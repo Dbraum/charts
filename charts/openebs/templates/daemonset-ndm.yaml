@@ -162,6 +162,10 @@ spec:
       nodeSelector:
 {{ toYaml .Values.ndm.nodeSelector | indent 8 }}
 {{- end }}
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: "{{ .Values.imagePullSecrets }}"
+{{- end }}
 {{- if .Values.ndm.tolerations }}
       tolerations:
 {{ toYaml .Values.ndm.tolerations | indent 8 }}

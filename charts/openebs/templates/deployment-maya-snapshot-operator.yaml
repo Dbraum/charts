@@ -140,4 +140,8 @@ spec:
       affinity:
 {{ toYaml .Values.snapshotOperator.affinity | indent 8 }}
 {{- end }}
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: "{{ .Values.imagePullSecrets }}"
+{{- end }}
 {{- end }}

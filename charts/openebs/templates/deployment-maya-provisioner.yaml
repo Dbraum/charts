@@ -103,4 +103,8 @@ spec:
       affinity:
 {{ toYaml .Values.provisioner.affinity | indent 8 }}
 {{- end }}
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: "{{ .Values.imagePullSecrets }}"
+{{- end }}
 {{- end }}

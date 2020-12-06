@@ -88,4 +88,8 @@ spec:
       tolerations:
 {{ toYaml .Values.ndmOperator.tolerations | indent 8 }}
 {{- end }}
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: "{{ .Values.imagePullSecrets }}"
+{{- end }}
 {{- end }}

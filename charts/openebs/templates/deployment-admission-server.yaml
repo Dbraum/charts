@@ -31,6 +31,10 @@ spec:
 {{- if .Values.webhook.hostNetwork }}
       hostNetwork: true
 {{- end }}
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: "{{ .Values.imagePullSecrets }}"
+{{- end }}
 {{- if .Values.webhook.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.webhook.nodeSelector | indent 8 }}

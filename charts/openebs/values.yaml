@@ -6,7 +6,7 @@ rbac:
   # Specifies whether RBAC resources should be created
   create: true
   pspEnabled: false
-
+imagePullSecrets: "regcred"
 serviceAccount:
   create: true
   name:
@@ -17,11 +17,11 @@ release:
 
 image:
   pullPolicy: IfNotPresent
-  repository: ""
+  repository: "swr.cn-south-1.myhuaweicloud.com/applife/"
 
 apiserver:
   enabled: true
-  image: "openebs/m-apiserver"
+  image: "m-apiserver"
   imageTag: "2.3.0"
   replicas: 1
   ports:
@@ -56,7 +56,7 @@ varDirectoryPath:
 
 provisioner:
   enabled: true
-  image: "openebs/openebs-k8s-provisioner"
+  image: "openebs-k8s-provisioner"
   imageTag: "2.3.0"
   replicas: 1
   enableLeaderElection: true
@@ -78,7 +78,7 @@ provisioner:
 
 localprovisioner:
   enabled: true
-  image: "openebs/provisioner-localpv"
+  image: "provisioner-localpv"
   imageTag: "2.3.0"
   replicas: 1
   enableLeaderElection: true
@@ -102,7 +102,7 @@ localprovisioner:
 snapshotOperator:
   enabled: true
   controller:
-    image: "openebs/snapshot-controller"
+    image: "snapshot-controller"
     imageTag: "2.3.0"
     ## snapshot controller resource requests and limits
     ## Reference: http://kubernetes.io/docs/user-guide/compute-resources/
@@ -114,7 +114,7 @@ snapshotOperator:
       #   cpu: 500m
       #   memory: 1Gi
   provisioner:
-    image: "openebs/snapshot-provisioner"
+    image: "snapshot-provisioner"
     imageTag: "2.3.0"
     ## snapshot provisioner resource requests and limits
     ## Reference: http://kubernetes.io/docs/user-guide/compute-resources/
@@ -137,7 +137,7 @@ snapshotOperator:
 
 ndm:
   enabled: true
-  image: "openebs/node-disk-manager"
+  image: "node-disk-manager"
   imageTag: "1.0.0"
   sparse:
     path: "/var/openebs/sparse"
@@ -169,7 +169,7 @@ ndm:
 
 ndmOperator:
   enabled: true
-  image: "openebs/node-disk-operator"
+  image: "node-disk-operator"
   imageTag: "1.0.0"
   replicas: 1
   upgradeStrategy: Recreate
@@ -194,7 +194,7 @@ ndmOperator:
 
 webhook:
   enabled: true
-  image: "openebs/admission-server"
+  image: "admission-server"
   imageTag: "2.3.0"
   failurePolicy: "Fail"
   replicas: 1
@@ -216,27 +216,27 @@ webhook:
     #   memory: 500Mi
 
 jiva:
-  image: "openebs/jiva"
+  image: "jiva"
   imageTag: "2.3.0"
   replicas: 3
   defaultStoragePath: "/var/openebs"
 
 cstor:
   pool:
-    image: "openebs/cstor-pool"
+    image: "cstor-pool"
     imageTag: "2.3.0"
   poolMgmt:
-    image: "openebs/cstor-pool-mgmt"
+    image: "cstor-pool-mgmt"
     imageTag: "2.3.0"
   target:
-    image: "openebs/cstor-istgt"
+    image: "cstor-istgt"
     imageTag: "2.3.0"
   volumeMgmt:
-    image: "openebs/cstor-volume-mgmt"
+    image: "cstor-volume-mgmt"
     imageTag: "2.3.0"
 
 helper:
-  image: "openebs/linux-utils"
+  image: "linux-utils"
   imageTag: "2.3.0"
 
 featureGates:
@@ -254,7 +254,7 @@ crd:
 policies:
   monitoring:
     enabled: true
-    image: "openebs/m-exporter"
+    image: "m-exporter"
     imageTag: "2.3.0"
 
 analytics:
